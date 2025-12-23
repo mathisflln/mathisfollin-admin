@@ -1606,6 +1606,166 @@
       });
     });
 
+    // === EMAILS ===
+    async function loadUsersCount() {
+      try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) return;
+
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/get_users_count`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById('users-count').textContent = data.count || '0';
+        } else {
+          // Fallback: compter via auth.admin (si disponible)
+          const { data: { users } } = await supabaseClient.auth.admin.listUsers();
+          document.getElementById('users-count').textContent = users?.length || '0';
+        }
+      } catch (err) {
+        console.error('Erreur chargement users:', err);
+        document.getElementById('users-count').textContent = '?';
+      }
+    }
+
+    document.getElementById('email-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '⏳ Envoi en cours...';
+
+      try {
+        const subject = document.getElementById('email-subject').value;
+        const contentDiv = document.getElementById('email-content');
+        const htmlContent = contentDiv.innerHTML;
+
+        if (!htmlContent.trim()) {
+          alert('Le contenu de l\'email ne peut pas être vide');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+          return;
+        }
+
+        // Récupérer le token d'authentification
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+          alert('Session expirée, veuillez vous reconnecter');
+          window.location.href = '/login.html';
+          return;
+        }
+
+        // Appeler la fonction Edge
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/send_email_to_all`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session.access_token}`
+          },
+          body: JSON.stringify({
+            subject,
+            htmlContent
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Erreur lors de l\'envoi');
+        }
+
+        alert(`✅ ${result.message}\n\n✓ Envoyés: ${result.success}\n${result.failed > 0 ? `✗ Échecs: ${result.failed}` : ''}`);
+        
+        // Réinitialiser le formulaire
+        document.getElementById('email-form').reset();
+        contentDiv.innerHTML = '';
+
+      } catch (err) {
+        console.error('Erreur envoi email:', err);
+        alert('❌ Erreur lors de l\'envoi des emails: ' + err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+
+    // === INVITATIONS ===
+    document.getElementById('invite-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '⏳ Envoi en cours...';
+
+      try {
+        const emailsText = document.getElementById('invite-emails').value;
+        const emails = emailsText
+          .split('\n')
+          .map(e => e.trim())
+          .filter(e => e && e.includes('@'));
+
+        if (emails.length === 0) {
+          alert('Veuillez entrer au moins une adresse email valide');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+          return;
+        }
+
+        let successCount = 0;
+        let errorCount = 0;
+        const errors = [];
+
+        for (const email of emails) {
+          try {
+            const { error } = await supabaseClient.auth.admin.inviteUserByEmail(email, {
+              redirectTo: 'https://fahmariecurie.vercel.app'
+            });
+
+            if (error) {
+              errorCount++;
+              errors.push(`${email}: ${error.message}`);
+            } else {
+              successCount++;
+            }
+
+            // Petit délai entre chaque envoi
+            await new Promise(resolve => setTimeout(resolve, 200));
+
+          } catch (err) {
+            errorCount++;
+            errors.push(`${email}: ${err.message}`);
+          }
+        }
+
+        let message = `✅ Invitations envoyées!\n\n`;
+        message += `✓ Réussies: ${successCount}\n`;
+        if (errorCount > 0) {
+          message += `✗ Échecs: ${errorCount}\n\n`;
+          message += `Erreurs:\n${errors.slice(0, 5).join('\n')}`;
+        }
+
+        alert(message);
+
+        if (successCount > 0) {
+          document.getElementById('invite-form').reset();
+        }
+
+      } catch (err) {
+        console.error('Erreur envoi invitations:', err);
+        alert('❌ Erreur: ' + err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+
     // === INIT ===
     checkAdminAccess();
 
