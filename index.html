@@ -435,7 +435,7 @@
   <aside class="sidebar">
     <div class="sidebar-header">
       <a href="https://mathisfollin.fr" class="sidebar-logo">
-        <img src="https://fahmariecurie.vercel.app/assets/logos/fah-white.png" alt="FAH Marie-Curie" />
+        <img src="https://mathisfollin.fr/assets/logos/fah-white.png" alt="FAH Marie-Curie" />
       </a>
       <span class="admin-badge">ADMIN</span>
     </div>
@@ -943,7 +943,7 @@
 
         if (!profile || profile.role !== "admin") {
           alert("Accès réservé aux administrateurs");
-          window.location.href = "https://fahmariecurie.vercel.app";
+          window.location.href = "https://mathisfollin.fr";
           return;
         }
 
@@ -1697,74 +1697,72 @@
 
     // === INVITATIONS ===
     document.getElementById('invite-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '⏳ Envoi en cours...';
+    e.preventDefault();
+    
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '⏳ Envoi en cours...';
 
-      try {
-        const emailsText = document.getElementById('invite-emails').value;
-        const emails = emailsText
-          .split('\n')
-          .map(e => e.trim())
-          .filter(e => e && e.includes('@'));
+    try {
+      const emailsText = document.getElementById('invite-emails').value;
+      const emails = emailsText
+        .split('\n')
+        .map(e => e.trim())
+        .filter(e => e && e.includes('@'));
 
-        if (emails.length === 0) {
-          alert('Veuillez entrer au moins une adresse email valide');
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-          return;
-        }
-
-        let successCount = 0;
-        let errorCount = 0;
-        const errors = [];
-
-        for (const email of emails) {
-          try {
-            const { error } = await supabaseClient.auth.admin.inviteUserByEmail(email, {
-              redirectTo: 'https://fahmariecurie.vercel.app'
-            });
-
-            if (error) {
-              errorCount++;
-              errors.push(`${email}: ${error.message}`);
-            } else {
-              successCount++;
-            }
-
-            // Petit délai entre chaque envoi
-            await new Promise(resolve => setTimeout(resolve, 200));
-
-          } catch (err) {
-            errorCount++;
-            errors.push(`${email}: ${err.message}`);
-          }
-        }
-
-        let message = `✅ Invitations envoyées!\n\n`;
-        message += `✓ Réussies: ${successCount}\n`;
-        if (errorCount > 0) {
-          message += `✗ Échecs: ${errorCount}\n\n`;
-          message += `Erreurs:\n${errors.slice(0, 5).join('\n')}`;
-        }
-
-        alert(message);
-
-        if (successCount > 0) {
-          document.getElementById('invite-form').reset();
-        }
-
-      } catch (err) {
-        console.error('Erreur envoi invitations:', err);
-        alert('❌ Erreur: ' + err.message);
-      } finally {
+      if (emails.length === 0) {
+        alert('Veuillez entrer au moins une adresse email valide');
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
+        return;
       }
-    });
+
+      // Récupérer le token
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (!session) {
+        alert('Session expirée, veuillez vous reconnecter');
+        window.location.href = '/login.html';
+        return;
+      }
+
+      // Appeler la fonction Edge
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/send_invitations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`
+        },
+        body: JSON.stringify({ emails })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Erreur lors de l\'envoi');
+      }
+
+      let message = `✅ Invitations envoyées!\n\n`;
+      message += `✓ Réussies: ${result.success}\n`;
+      if (result.failed > 0) {
+        message += `✗ Échecs: ${result.failed}\n\n`;
+        message += `Erreurs:\n${result.errors.slice(0, 5).join('\n')}`;
+      }
+
+      alert(message);
+
+      if (result.success > 0) {
+        document.getElementById('invite-form').reset();
+      }
+
+    } catch (err) {
+      console.error('Erreur envoi invitations:', err);
+      alert('❌ Erreur: ' + err.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }
+  });
 
     // === INIT ===
     checkAdminAccess();
