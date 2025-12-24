@@ -467,7 +467,6 @@
     }
   </style>
 </head>
-<body>
   <body class="auth-checking">
   <!-- Loader auth -->
   <div class="auth-loader" id="auth-loader">
@@ -999,6 +998,11 @@
         document.getElementById('welcome-name').textContent = name;
 
         await loadStats();
+
+        // Auth OK - afficher le contenu
+        document.body.classList.remove('auth-checking');
+        document.getElementById('auth-loader').classList.add('hide');
+
       } catch (err) {
         console.error('Auth error', err);
         window.location.href = "/login.html";
