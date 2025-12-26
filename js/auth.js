@@ -3,7 +3,7 @@ async function checkAdminAccess() {
   try {
     const { data: userData } = await supabaseClient.auth.getUser();
     if (!userData.user) {
-      window.location.href = "/admin/login.html";
+      window.location.href = "https://admin.mathisfollin.fr/login";
       return null;
     }
 
@@ -28,7 +28,7 @@ async function checkAdminAccess() {
     return userData.user;
   } catch (err) {
     console.error('Auth error', err);
-    window.location.href = "/admin/login.html";
+    window.location.href = "https://admin.mathisfollin.fr/login";
     return null;
   }
 }
@@ -51,7 +51,7 @@ function displayAdminInfo(user) {
 // Déconnexion
 async function adminLogout() {
   await supabaseClient.auth.signOut();
-  window.location.href = "/admin/login.html";
+  window.location.href = "https://admin.mathisfollin.fr/login";
 }
 
 // Initialiser le bouton de déconnexion
