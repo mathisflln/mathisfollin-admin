@@ -3,7 +3,31 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/overview",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/articles",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/quiz",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/documents",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/events",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/emails",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/invites",
       "destination": "/index.html"
     }
   ]
