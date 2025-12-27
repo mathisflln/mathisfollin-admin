@@ -1,34 +1,30 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/overview",
-      "destination": "/index.html"
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
     },
     {
-      "source": "/articles",
-      "destination": "/index.html"
+      "src": "/css/(.*)",
+      "dest": "/css/$1"
     },
     {
-      "source": "/quiz",
-      "destination": "/index.html"
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
     },
     {
-      "source": "/documents",
-      "destination": "/index.html"
+      "src": "/(.*\\.(png|jpg|jpeg|gif|svg|ico|json|txt|xml|woff|woff2|ttf|eot|js|css))",
+      "dest": "/$1"
     },
     {
-      "source": "/events",
-      "destination": "/index.html"
+      "src": "/(login|auth-confirm|set-password|reset-password)\\.html",
+      "dest": "/$1.html"
     },
     {
-      "source": "/emails",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/invites",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
