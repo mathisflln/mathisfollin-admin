@@ -33,11 +33,27 @@ async function checkAdminAccess() {
   }
 }
 
-// Afficher les infos admin
-function displayAdminInfo(user) {
-  const email = user.email || '';
-  const name = email.split('@')[0] || 'Admin';
-  const initials = name.charAt(0).toUpperCase();
+// Afficher les infos admin avec nom et prénom
+async function displayAdminInfo(user) {
+  // Récupérer le profil avec first_name et last_name
+  const { data: profile } = await supabaseClient
+    .from('profiles')
+    .select('first_name, last_name')
+    .eq('id', user.id)
+    .single();
+  
+  let name, initials;
+  
+  if (profile && profile.first_name && profile.last_name) {
+    // Si on a nom et prénom
+    name = `${profile.first_name} ${profile.last_name}`;
+    initials = `${profile.first_name.charAt(0)}${profile.last_name.charAt(0)}`.toUpperCase();
+  } else {
+    // Fallback sur l'email
+    const email = user.email || '';
+    name = email.split('@')[0] || 'Admin';
+    initials = name.charAt(0).toUpperCase();
+  }
 
   const userName = document.getElementById('user-name');
   const userAvatar = document.getElementById('user-avatar');
@@ -45,7 +61,7 @@ function displayAdminInfo(user) {
 
   if (userName) userName.textContent = name;
   if (userAvatar) userAvatar.textContent = initials;
-  if (welcomeName) welcomeName.textContent = name;
+  if (welcomeName) welcomeName.textContent = profile?.first_name || name.split(' ')[0];
 }
 
 // Déconnexion
