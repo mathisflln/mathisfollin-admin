@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: "Stack Sans Headline", sans-serif; background: #0a0a0a; min-height: 100vh; color: #e5e5e5; }
+body { font-family: "Inter", sans-serif; background: #0a0a0a; min-height: 100vh; color: #e5e5e5; }
 
 /* LOADER AUTH */
 .auth-loader {
