@@ -2,13 +2,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/login", "destination": "/login.html" },
-    { "source": "/articles", "destination": "/index.html" },
-    { "source": "/quiz", "destination": "/index.html" },
-    { "source": "/documents", "destination": "/index.html" },
-    { "source": "/events", "destination": "/index.html" },
-    { "source": "/emails", "destination": "/index.html" },
-    { "source": "/invites", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
