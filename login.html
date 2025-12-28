@@ -22,7 +22,7 @@
 
     body {
       font-family: "Inter", sans-serif;
-      background: #0a0a0a;
+      background: #000000;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -30,25 +30,6 @@
       width: 100%;
       max-width: 100vw;
       position: relative;
-    }
-
-    /* Gradient animé en fond */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(ellipse at 20% 30%, rgba(255, 255, 16, 0.15) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 70%, rgba(255, 255, 16, 0.1) 0%, transparent 50%);
-      animation: gradientShift 8s ease-in-out infinite;
-      z-index: 0;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
     }
 
     /* Logo */
@@ -62,22 +43,6 @@
     .logo img {
       height: 50px;
       width: auto;
-    }
-
-    /* Badge admin */
-    .admin-badge {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      background: linear-gradient(135deg, #FFFF10 0%, #fff4a4 100%);
-      color: #0a0a0a;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      z-index: 10;
-      box-shadow: 0 4px 12px rgba(255, 255, 16, 0.3);
     }
 
     /* Container principal */
@@ -94,12 +59,33 @@
     .login-container {
       width: 100%;
       max-width: 420px;
-      background: #141414;
+      background: #151419;
       border: 1px solid #2a2a2a;
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 48px 40px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04), /* lumière interne */
+        0 20px 60px rgba(0, 0, 0, 0.55),         /* ombre principale */
+        0 4px 12px rgba(0, 0, 0, 0.6);           /* profondeur */
+      position: relative;
     }
+
+    .login-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0)
+      );
+      opacity: 0.6;
+    }
+
+
 
     /* Titre */
     h1 {
@@ -127,44 +113,48 @@
     .form-label {
       display: block;
       font-size: 0.875rem;
-      color: #999;
+      color: white;
       margin-bottom: 8px;
       font-weight: 500;
     }
 
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="text"] {
       width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
+      padding: 10px 14px;
+      border: 1.5px solid #434343;
+      border-radius: 5px;
       font-family: "Inter", sans-serif;
       font-weight: 300;
       font-size: 0.95rem;
       transition: all 0.2s ease;
-      background: #0a0a0a;
+      background: transparent;
       color: #e5e5e5;
     }
 
     input[type="email"]:focus,
-    input[type="password"]:focus {
+    input[type="password"]:focus,
+    input[type="text"]:focus {
       outline: none;
-      border-color: #FFFF10;
-      box-shadow: 0 0 0 3px rgba(255, 255, 16, 0.1);
+      border-color: #A600FF;
     }
 
     input[type="email"]::placeholder,
-    input[type="password"]::placeholder {
+    input[type="password"]::placeholder,
+    input[type="text"]::placeholder {
       color: #666;
     }
 
     /* Autofill */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus {
-      -webkit-box-shadow: 0 0 0 30px #0a0a0a inset !important;
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      box-shadow: 0 0 0 1000px transparent inset !important;
       -webkit-text-fill-color: #e5e5e5 !important;
-      border: 1px solid #2a2a2a;
+      transition: background-color 9999s ease-out 0s;
     }
 
     /* Password toggle */
@@ -189,38 +179,34 @@
     }
 
     .toggle-password:hover {
-      color: #FFFF10;
+      color: white;
     }
 
     .toggle-password svg {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
     }
 
     /* Bouton submit */
     .btn-submit {
       width: 100%;
-      padding: 14px 24px;
-      background: linear-gradient(135deg, #FFFF10 0%, #fff4a4 100%);
-      color: #0a0a0a;
-      border: none;
-      border-radius: 8px;
+      padding: 10px 24px;
       font-family: "Inter", sans-serif;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 1px 1px 0 rgba(0,0,0,.4);
+      background: linear-gradient(#777783, #56555F);
+      border: 1px solid #0D0E13;
+      border-radius: 5px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      box-shadow: 0 1px 0 rgba(255,255,255,.3) inset, 0 1px 2px rgba(0,0,0,.7);
       margin-top: 8px;
-      box-shadow: 0 4px 12px rgba(255, 255, 16, 0.2);
+      transition: box-shadow 0.2s ease;
     }
 
     .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 255, 16, 0.3);
-    }
-
-    .btn-submit:active {
-      transform: translateY(0);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 2px 4px rgba(0,0,0,.6);    
     }
 
     .btn-submit:disabled {
@@ -320,31 +306,6 @@
       pointer-events: none;
     }
 
-    .decoration-1 {
-      top: 10%;
-      left: 5%;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(255, 255, 16, 0.2) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .decoration-2 {
-      bottom: 15%;
-      right: 8%;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(255, 255, 16, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
       .logo {
@@ -388,15 +349,6 @@
   <a href="https://mathisfollin.fr" class="logo">
     <img src="https://mathisfollin.fr/assets/logos/fah-white.png" alt="FAH Marie-Curie" />
   </a>
-
-  <!-- Badge admin -->
-  <div class="admin-badge">
-    ADMINISTRATEUR
-  </div>
-
-  <!-- Décorations -->
-  <div class="decoration decoration-1"></div>
-  <div class="decoration decoration-2"></div>
 
   <!-- Container principal -->
   <div class="login-wrapper">
