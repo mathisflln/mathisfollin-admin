@@ -39,7 +39,7 @@ body.auth-checking .main-content {
 }
 
 /* SIDEBAR */
-.sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 280px; background: #141414; border-right: 1px solid #2a2a2a; display: flex; flex-direction: column; z-index: 100; }
+.sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 280px; background: #000000; border-right: 1px solid #2a2a2a; display: flex; flex-direction: column; z-index: 100; }
 .sidebar-header { padding: 24px; border-bottom: 1px solid #2a2a2a; }
 .sidebar-logo { display: flex; align-items: center; text-decoration: none; }
 .sidebar-logo img { height: 40px; width: auto; }

@@ -3,7 +3,7 @@ async function checkAdminAccess() {
   try {
     const { data: userData } = await supabaseClient.auth.getUser();
     if (!userData.user) {
-      window.location.href = "https://admin.mathisfollin.fr/login";
+      window.location.href = "/login.html"; // ← Chemin relatif
       return null;
     }
 
@@ -16,7 +16,7 @@ async function checkAdminAccess() {
     if (!profile || profile.role !== "admin") {
       alert("Accès réservé aux administrateurs");
       await supabaseClient.auth.signOut();
-      window.location.href = "https://mathisfollin.fr";
+      window.location.href = "/login.html"; // ← Chemin relatif
       return null;
     }
 
@@ -28,7 +28,7 @@ async function checkAdminAccess() {
     return userData.user;
   } catch (err) {
     console.error('Auth error', err);
-    window.location.href = "https://admin.mathisfollin.fr/login";
+    window.location.href = "/login.html"; // ← Chemin relatif
     return null;
   }
 }
@@ -67,7 +67,7 @@ async function displayAdminInfo(user) {
 // Déconnexion
 async function adminLogout() {
   await supabaseClient.auth.signOut();
-  window.location.href = "https://admin.mathisfollin.fr/login";
+  window.location.href = "/login.html"; // ← Chemin relatif
 }
 
 // Initialiser le bouton de déconnexion
