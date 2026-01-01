@@ -1,0 +1,62 @@
+/**
+ * EDITOR.CSS
+ * Styles pour l'éditeur de texte riche
+ */
+
+/* === RICH EDITOR === */
+.rich-editor {
+    background: #141517;
+    border: 1.7px solid #292E32;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* === EDITOR TOOLBAR === */
+.editor-toolbar {
+    display: flex;
+    gap: 4px;
+    padding: 8px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+    flex-wrap: wrap;
+}
+
+.editor-btn {
+    padding: 6px 10px;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.editor-btn:hover {
+    border-color: #FFFF10;
+    color: #FFFF10;
+}
+
+/* === EDITOR CONTENT === */
+.editor-content {
+    min-height: 400px;
+    padding: 16px;
+    color: #e5e5e5;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    outline: none;
+}
+
+.editor-content:empty:before {
+    content: attr(data-placeholder);
+    color: #666;
+}
+
+/* === RESPONSIVE EDITOR === */
+@media (max-width: 480px) {
+    .editor-content {
+        min-height: 250px;
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+}

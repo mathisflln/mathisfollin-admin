@@ -1,0 +1,130 @@
+/**
+ * LAYOUT.CSS
+ * Styles pour la structure et mise en page principale
+ */
+
+/* === MAIN CONTENT === */
+.main-content {
+    margin-left: 250px;
+    padding: 32px;
+    min-height: 100vh;
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: calc(250px + 32px);
+    padding-top: 70px;
+    margin-top: 60px;
+}
+
+/* === PAGE HEADER === */
+.page-header {
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #e5e5e5;
+    margin-bottom: 0;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: #999;
+    font-weight: 300;
+}
+
+/* === CONTENT SECTION === */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e5e5e5;
+}
+
+/* === EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.empty-state svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+/* === VIEWS === */
+.view-section {
+    display: none;
+}
+
+.view-section.active {
+    display: block;
+}
+
+/* === RESPONSIVE LAYOUT === */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 0;
+        padding: 80px 20px 20px 20px;
+        margin-top: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 70px 16px 16px 16px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 70px 12px 12px 12px;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .page-header .btn-create {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .page-title {
+        font-size: 1.25rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+}

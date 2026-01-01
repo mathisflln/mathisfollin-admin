@@ -1,0 +1,124 @@
+/**
+ * BUTTONS.CSS
+ * Styles pour tous les boutons de l'application
+ */
+
+/* === CREATE BUTTON === */
+.btn-create {
+    padding: 7px 12px;
+    background: #FFFFFF;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 12px;
+    font-family: "Inter", sans-serif;
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-create:hover {
+    background: #F0F0F0;
+}
+
+.btn-create svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* === MODAL BUTTONS === */
+.modal-actions {
+    gap: 12px;
+    margin-top: 8px;
+    display: inline-flex;
+}
+
+.btn-modal {
+    flex: 1;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    padding: 7px 12px;
+    background: #FFFFFF;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 12px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background: #F0F0F0;
+}
+
+.btn-secondary {
+    background: #18191ce0;
+    color: #a1a4a5;
+    border: 1.7px solid #292E32;
+    font-weight: 400;
+}
+
+.btn-secondary:hover {
+    background: #b0c7d925;
+}
+
+/* === QUIZ BUILDER BUTTONS === */
+.btn-remove-question {
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    color: #ff6465eb;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+}
+
+.btn-remove-question:hover {
+    background: #fe0a3b44;
+}
+
+.btn-add-question {
+    width: 100%;
+    padding: 12px;
+    background: #141517;
+    border: 1px dashed #292E32;
+    border-radius: 12px;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-add-question:hover {
+    border-color: #F0F0F0;
+    color: #F0F0F0;
+}
+
+/* === RESPONSIVE BUTTONS === */
+@media (max-width: 768px) {
+    .btn-create {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-remove-question {
+        width: 100%;
+    }
+}

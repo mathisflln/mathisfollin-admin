@@ -1,0 +1,73 @@
+/**
+ * MOBILE.CSS
+ * Styles pour le menu burger et adaptations mobiles
+ */
+
+/* === MOBILE MENU BUTTON === */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 101;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #e5e5e5;
+    display: block;
+}
+
+/* === MOBILE OVERLAY === */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablettes et petits écrans */
+@media (max-width: 1024px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        transform: translateX(-280px);
+        transition: transform 0.3s ease;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+    .mobile-menu-btn {
+        top: 16px;
+        left: 16px;
+        padding: 8px;
+    }
+}

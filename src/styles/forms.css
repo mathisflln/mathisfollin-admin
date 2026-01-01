@@ -1,0 +1,99 @@
+/**
+ * FORMS.CSS
+ * Styles pour les formulaires et champs de saisie
+ */
+
+/* === FORM GROUP === */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #A1A4A5;
+    margin-bottom: 8px;
+    font-weight: 350;
+}
+
+/* === FORM INPUTS === */
+.form-input,
+.form-textarea,
+.form-select {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    padding: 7px 14px;
+    border: 1.7px solid #292E32;
+    border-radius: 12px;
+    background: #141517;
+    font-family: "Inter", sans-serif;
+    color: #FFF;
+    font-size: 0.875rem;
+    font-weight: 400;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border-color: #6b6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* === FILE UPLOAD === */
+.file-upload {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #141517;
+    border: 1.7px dashed #3e4448;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.file-upload:hover {
+    border-color: #6b6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+.file-upload.dragging {
+    border-color: white;
+}
+
+.file-upload img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+    opacity: 70%;
+}
+
+.file-upload-text {
+    color: #A1A4A5;
+    font-size: 0.9rem;
+}
+
+/* === RESPONSIVE FORMS === */
+@media (max-width: 480px) {
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+        font-size: 16px;
+    }
+}

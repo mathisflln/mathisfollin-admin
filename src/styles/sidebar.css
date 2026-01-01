@@ -1,0 +1,160 @@
+/**
+ * SIDEBAR.CSS
+ * Styles pour la barre de navigation latérale
+ */
+
+/* === SIDEBAR CONTAINER === */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: #000000;
+    border-right: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+/* === SIDEBAR HEADER === */
+.sidebar-header {
+    padding: 24px;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.sidebar-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* === SIDEBAR NAVIGATION === */
+.sidebar-nav {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.nav-section {
+    margin-bottom: 32px;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 8px;
+    padding: 0 12px;
+}
+
+.nav-item {
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    color: #A1A4A5;
+    text-decoration: none;
+    font-size: .875rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: #151619;
+    color: #F0F0F0;
+}
+
+.nav-item.active {
+    background: #151619;
+    color: #F0F0F0;
+}
+
+.nav-item svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: rgb(245, 245, 245);
+}
+
+/* === SIDEBAR FOOTER === */
+.sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid #2a2a2a;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 12px;
+    margin-bottom: 8px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFFF10 0%, #fff4a4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #0a0a0a;
+    font-size: 0.9rem;
+}
+
+.user-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #e5e5e5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    color: #818181;
+}
+
+/* === LOGOUT BUTTON === */
+.btn-logout {
+    width: 100%;
+    padding: 7px 12px;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    color: #999;
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-logout:hover {
+    background: #1a0000;
+    border-color: #4a0000;
+    color: #ff4444;
+}
+
+.btn-logout svg {
+    width: 16px;
+    height: 16px;
+}

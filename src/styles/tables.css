@@ -1,0 +1,403 @@
+/**
+ * TABLES.CSS
+ * Styles pour les tables de données
+ */
+
+/* === TABLE CONTAINER === */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 16px;
+}
+
+/* === DATA TABLE === */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #000000;
+    border: none;
+}
+
+.data-table th,
+.data-table td {
+    white-space: nowrap;
+}
+
+/* === TABLE HEADER === */
+.data-table th {
+    text-align: left;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #969A9B;
+    background-color: transparent;
+    white-space: nowrap;
+}
+
+.data-table th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.data-table th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* === TABLE HEADER WRAPPER === */
+.data-table thead tr {
+    background-color: #141517;
+}
+
+.data-table thead {
+    position: relative;
+}
+
+.data-table thead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1.7px solid #292E32;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+/* === TABLE BODY === */
+.data-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid #1a1a1a;
+    color: #F0F0F0;
+    font-size: .875rem;
+}
+
+/* === CHECKBOX === */
+.data-table th:first-child,
+.data-table td:first-child {
+    padding-left: 12px;
+}
+
+.table-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #141517;
+    border: 1.7px solid #292E32;
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.table-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid #F0F0F0;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* === STATUS BADGES === */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: .5rem;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+.status-published {
+    background: #22ff991e;
+    color: #46fea5d4;
+}
+
+.status-draft {
+    background: #47332a60;
+    color: #e0b18ad4;
+}
+
+/* === ACTION MENU === */
+.action-menu {
+    position: relative;
+}
+
+.action-menu-trigger {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #999;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.action-menu-trigger:hover {
+    background: #1a1a1a;
+    color: #e5e5e5;
+}
+
+.action-menu-trigger svg {
+    width: 18px;
+    height: 18px;
+}
+
+.action-menu-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    background: #000;
+    border: 1.7px solid #292E32;
+    border-radius: 8px;
+    min-width: 140px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.action-menu-item {
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: #e5e5e5;
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: block;
+}
+
+.action-menu-item:hover {
+    background: #1a1a1a;
+}
+
+.action-menu-item.danger {
+    color: #ff4444;
+}
+
+.action-menu-item.danger:hover {
+    background: #1a0000;
+}
+
+
+/* === ACTION MENU OVERLAY === */
+.action-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    cursor: default;
+}
+
+
+/* === SELECTION BAR === */
+.selection-bar {
+    position: fixed;
+    bottom: 24px;
+    left: calc(50% + 125px);
+    transform: translateX(-50%);
+    background: #141517;
+    border-radius: 1rem;
+    padding: 3px 3px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    gap: 3px;
+    animation: slideUp 0.3s ease;
+}
+
+.selection-bar-text {
+    color: #e5e5e5;
+    font-size: 0.875rem;
+    font-weight: 300;
+    padding: 6px 1px 6px 15px;
+}
+
+.selection-bar-divider {
+    width: 1px;
+    height: 25px;
+    background: #383838;
+}
+
+/* === SELECTION BAR BUTTONS === */
+.selection-bar-btn {
+    padding: 5px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: #999;
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.selection-bar-btn:hover {
+    color: #e5e5e5;
+    background-color: #616768;
+}
+
+.selection-bar-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.selection-bar-btn.danger {
+    font-weight: 600;
+    padding: 10px 14px;
+    color: #ff6465eb;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
+
+.selection-bar-btn.danger:hover {
+    background: #fe0a3b44;
+}
+
+.selection-bar-btn.danger svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* === TABLE FOOTER === */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 0.875rem;
+    color: #999;
+}
+
+/* === TABLE PAGINATION === */
+.table-pagination {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.table-pagination button {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #999;
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.table-pagination button:hover:not(:disabled) {
+    border-color: #FFFF10;
+    color: #FFFF10;
+}
+
+.table-pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.table-pagination button.active {
+    background: #FFFF10;
+    border-color: #FFFF10;
+    color: #0a0a0a;
+    font-weight: 600;
+}
+
+/* === TABLE SEARCH === */
+.table-search {
+    margin-bottom: 16px;
+}
+
+.table-search input {
+    width: 66.666%;
+    padding: 8px 12px;
+    background: #141517;
+    border: 1.7px solid #292E32;
+    border-radius: 12px;
+    color: #FFF;
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table-search input:focus {
+    border-color: #6b6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+
+/* === COLUMN SIZING === */
+.col-checkbox {
+    width: 40px;
+    min-width: 40px;
+}
+
+.col-actions {
+    width: 50px;
+    min-width: 50px;
+}
+
+
+/* === RESPONSIVE === */
+
+@media (max-width: 1024px) {
+    .data-table {
+        font-size: 0.85rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 10px 8px;
+    }
+
+    .selection-bar {
+        left: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-table {
+        border: none;
+    }
+
+    .data-table td:first-child {
+        padding-left: 0;
+    }
+
+    .data-table td:first-child:before {
+        content: '';
+    }
+
+    .table-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .table-search input {
+        width: 100%;
+    }
+}

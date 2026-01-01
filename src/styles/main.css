@@ -1,0 +1,38 @@
+/**
+ * MAIN.CSS
+ * Fichier principal qui importe tous les modules CSS
+ * 
+ * Usage dans le HTML :
+ * <link rel="stylesheet" href="css/main.css">
+ */
+
+/* === IMPORTS === */
+
+/* Base & Reset */
+@import url('base.css');
+
+/* Authentication */
+@import url('auth.css');
+
+/* Layout Components */
+@import url('sidebar.css');
+@import url('topbar.css');
+@import url('layout.css');
+
+/* Dashboard Components */
+@import url('stats.css');
+
+/* Table Components */
+@import url('tables.css');
+
+/* Form Components */
+@import url('forms.css');
+@import url('buttons.css');
+@import url('editor.css');
+@import url('quiz.css');
+
+/* Modal */
+@import url('modal.css');
+
+/* Mobile & Responsive */
+@import url('mobile.css');
