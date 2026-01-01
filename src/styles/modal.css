@@ -67,18 +67,56 @@
 @media (max-width: 1024px) {
     .modal-content {
         width: 95%;
+        padding: 28px;
+        max-height: 90vh;
+    }
+
+    .modal-content.wide {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
         padding: 24px;
         max-height: 90vh;
+    }
+
+    .modal-header {
+        margin-bottom: 20px;
+    }
+
+    .modal-title {
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 480px) {
     .modal-content {
-        padding: 16px;
+        padding: 20px;
         max-height: 92vh;
+        width: 95%;
+        border-radius: 1.5rem;
     }
 
     .modal-header {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
+    }
+
+    .modal-title {
+        font-size: 1rem;
+    }
+
+    .btn-close-modal {
+        padding: 4px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .btn-modal {
+        width: 100%;
     }
 }

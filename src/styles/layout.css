@@ -78,14 +78,20 @@
 @media (max-width: 1024px) {
     .main-content {
         margin-left: 0;
-        padding: 80px 20px 20px 20px;
-        margin-top: 140px;
+        padding: 24px 20px 20px 20px;
+        margin-top: 80px;
+        padding-left: 20px;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
     }
 }
 
 @media (max-width: 768px) {
     .main-content {
-        padding: 70px 16px 16px 16px;
+        padding: 20px 16px 16px 16px;
+        margin-top: 70px;
     }
 
     .page-title {
@@ -101,15 +107,20 @@
         align-items: flex-start;
         gap: 12px;
     }
+
+    .page-header {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 480px) {
     .main-content {
-        padding: 70px 12px 12px 12px;
+        padding: 16px 12px 12px 12px;
+        margin-top: 60px;
     }
 
     .page-header {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
@@ -121,10 +132,14 @@
     }
 
     .page-title {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
     }
 
     .section-title {
         font-size: 1.1rem;
+    }
+
+    .empty-state {
+        padding: 40px 16px;
     }
 }
