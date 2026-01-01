@@ -152,16 +152,13 @@
 }
 
 .action-menu-dropdown {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    margin-top: 4px;
+    position: fixed;
     background: #000;
     border: 1.7px solid #292E32;
     border-radius: 8px;
     min-width: 140px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-    z-index: 100;
+    z-index: 1001;
     overflow: hidden;
 }
 
