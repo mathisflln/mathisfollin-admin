@@ -66,10 +66,7 @@ function Members() {
   return (
     <>
       <div className="page-header">
-        <div>
-          <h1 className="page-title">Membres</h1>
-          <p className="page-subtitle">Gérez les utilisateurs de votre plateforme</p>
-        </div>
+        <h1 className="page-title">Événements</h1>
       </div>
 
       {loading ? (
