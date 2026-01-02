@@ -9,6 +9,7 @@ import Documents from './Documents'
 import Events from './Events'
 import Emails from './Emails'
 import Invites from './Invites'
+import Members from './Members'
 
 function Dashboard() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -62,6 +63,7 @@ function Dashboard() {
           <Route path="/events" element={<Events />} />
           <Route path="/emails" element={<Emails />} />
           <Route path="/invites" element={<Invites />} />
+          <Route path="/members" element={<Members />} />
         </Routes>
       </main>
     </>

@@ -122,6 +122,16 @@
     color: #e0b18ad4;
 }
 
+.status-admin {
+    background: #ffff101e;
+    color: #ffff10d4;
+}
+
+.status-member {
+    background: #4747ff1e;
+    color: #7b7bffd4;
+}
+
 /* === ACTION MENU === */
 .action-menu {
     position: relative;
