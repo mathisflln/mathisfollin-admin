@@ -66,7 +66,7 @@ function Members() {
   return (
     <>
       <div className="page-header">
-        <h1 className="page-title">Événements</h1>
+        <h1 className="page-title">Membres</h1>
       </div>
 
       {loading ? (
