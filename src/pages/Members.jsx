@@ -24,19 +24,19 @@ function Members() {
 
   const columns = [
     { 
-      key: 'name', 
-      label: 'Nom',
-      render: (row) => getFullName(row)
-    },
-    { 
       key: 'first_name', 
       label: 'Prénom',
       render: (row) => row.first_name || '-'
     },
     { 
       key: 'last_name', 
-      label: 'Nom de famille',
+      label: 'Nom',
       render: (row) => row.last_name || '-'
+    },
+    { 
+      key: 'email', 
+      label: 'Email',
+      render: (row) => row.email || '-'
     },
     { 
       key: 'role', 

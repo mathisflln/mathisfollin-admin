@@ -7,17 +7,33 @@ export function useMembers() {
 
   const load = async () => {
     setLoading(true)
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('id, first_name, last_name, role, created_at')
-      .order('created_at', { ascending: false })
     
-    if (error) {
+    try {
+      // Utiliser une fonction Edge pour récupérer les membres avec leurs emails
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        throw new Error('Session expirée')
+      }
+
+      const response = await fetch(`https://ckfdysasgawyixbxjyfz.supabase.co/functions/v1/get_all_members`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`
+        }
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Erreur lors du chargement')
+      }
+
+      const result = await response.json()
+      setMembers(result.members || [])
+    } catch (error) {
       console.error('Error loading members:', error)
       setMembers([])
-    } else {
-      setMembers(data || [])
     }
+    
     setLoading(false)
   }
 
@@ -33,7 +49,7 @@ export function useMembers() {
         throw new Error('Session expirée')
       }
 
-      const response = await fetch(`${supabase.supabaseUrl}/functions/v1/delete_user`, {
+      const response = await fetch(`https://ckfdysasgawyixbxjyfz.supabase.co/functions/v1/delete_user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

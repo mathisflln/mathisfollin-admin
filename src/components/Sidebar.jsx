@@ -99,6 +99,17 @@ function Sidebar({ mobileOpen, onMobileClose }) {
             </lottie-player>
             <span>Emails</span>
           </NavLink>
+
+
+          <NavLink to="/members" className="nav-item" onClick={handleNavClick}>
+            <lottie-player
+              src="/assets/logos/userPlus.json"
+              style={{width:'22px', height:'22px'}}
+              loop="false"
+              autoplay="false">
+            </lottie-player>
+            <span>Emails</span>
+          </NavLink>
           
           <NavLink to="/invites" className="nav-item" onClick={handleNavClick}>
             <lottie-player
