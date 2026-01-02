@@ -108,7 +108,7 @@ function Sidebar({ mobileOpen, onMobileClose }) {
               loop="false"
               autoplay="false">
             </lottie-player>
-            <span>Emails</span>
+            <span>Membres</span>
           </NavLink>
           
           <NavLink to="/invites" className="nav-item" onClick={handleNavClick}>
